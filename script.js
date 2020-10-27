@@ -55,6 +55,16 @@ gameOver()
   }
 }
 
+const startRound= () => {
+  doorImage1.src = closedDoorPath
+  doorImage2.src = closedDoorPath
+  doorImage3.src = closedDoorPath
+  numClosedDoors = 3
+  startButton.innerHTML = 'Good luck!'
+  currentlyPlaying = true
+  randomChoreDoorGenerator()
+}
+
 let randomChoreDoorGenerator = () => {
 let choreDoor = Math.floor(Math.random()*numClosedDoors)
 
@@ -93,4 +103,9 @@ doorImage3.onclick = ()=>{
   playDoor(doorImage3)}
 }
 
-randomChoreDoorGenerator()
+startButton.onclick = () =>{
+  if (!currentlyPlaying){
+  startRound()}
+}
+
+startRound()
