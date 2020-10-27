@@ -8,17 +8,41 @@ let beachDoorPath = 'https://content.codecademy.com/projects/chore-door/images/b
 
 let spaceDoorPath ='https://content.codecademy.com/projects/chore-door/images/space.svg'
 
+let numClosedDoors = 3;
+
+let openDoor1
+let openDoor2
+let openDoor3
+
+let randomChoreDoorGenerator = () => {
+let choreDoor = Math.floor(Math.random()*numClosedDoors)
+
+if (choreDoor === 0){
+ openDoor1 = botDoorPath
+ openDoor2 = beachDoorPath
+openDoor3 = spaceDoorPath
+} else if (choreDoor === 1){
+ openDoor2 = botDoorPath
+ openDoor1 = beachDoorPath
+ openDoor3 = spaceDoorPath
+} else {
+ openDoor3 = botDoorPath
+ openDoor2 = beachDoorPath
+ openDoor1 = spaceDoorPath
+  }
+}
+
+
 doorImage1.onclick = ()=>{
-    console.log("Clicked on door 1!")
-  doorImage1.src = botDoorPath
+  doorImage1.src = openDoor1
 }
 
 doorImage2.onclick = ()=>{
-    console.log("Clicked on door 2!")
- doorImage2.src = beachDoorPath
+ doorImage2.src = openDoor2
 }
 
 doorImage3.onclick = ()=>{
-    console.log("Clicked on door 3!")
- doorImage3.src = spaceDoorPath
+ doorImage3.src = openDoor3
 }
+
+randomChoreDoorGenerator()
