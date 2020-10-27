@@ -2,17 +2,42 @@ let doorImage1 = document.getElementById('door1')
 let doorImage2 = document.getElementById('door2')
 let doorImage3 = document.getElementById('door3')
 
+let closedDoorPath = 'https://content.codecademy.com/projects/chore-door/images/closed_door.svg'
+
 let botDoorPath = 'https://content.codecademy.com/projects/chore-door/images/robot.svg'
 
 let beachDoorPath = 'https://content.codecademy.com/projects/chore-door/images/beach.svg'
 
 let spaceDoorPath ='https://content.codecademy.com/projects/chore-door/images/space.svg'
 
+let startButton = document.getElementById('start')
+
 let numClosedDoors = 3;
 
 let openDoor1
 let openDoor2
 let openDoor3
+
+const gameOver = (status) => {
+if (status ==='win'){
+  startButton.innerHTML = "You win! Play again?"
+}
+}
+
+const isClicked = (door)=>{
+if (door.src === closedDoorPath){
+  return false
+} else {
+  return true
+}
+}
+
+const playDoor = () => {
+  numClosedDoors--
+  if (numClosedDoors === 0){
+    gameOver('win')
+  }
+}
 
 let randomChoreDoorGenerator = () => {
 let choreDoor = Math.floor(Math.random()*numClosedDoors)
@@ -33,16 +58,23 @@ openDoor3 = spaceDoorPath
 }
 
 
+
 doorImage1.onclick = ()=>{
+  if(!isClicked(doorImage1)){
   doorImage1.src = openDoor1
+  playDoor()}
 }
 
 doorImage2.onclick = ()=>{
- doorImage2.src = openDoor2
+ if(!isClicked(doorImage2)){
+  doorImage2.src = openDoor2
+  playDoor()}
 }
 
 doorImage3.onclick = ()=>{
- doorImage3.src = openDoor3
+ if(!isClicked(doorImage3)){
+  doorImage3.src = openDoor3
+  playDoor()}
 }
 
 randomChoreDoorGenerator()
